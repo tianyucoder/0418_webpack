@@ -1,0 +1,28 @@
+{
+  "name": "webpack_0418",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tianyu5177/0418_webpack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tianyu5177/0418_webpack/issues"
+  },
+  "homepage": "https://github.com/Tianyu5177/0418_webpack#readme",
+  "devDependencies": {
+    "less-loader": "^5.0.0",
+    "webpack": "^3.12.0"
+  },
+  "dependencies": {
+    "css-loader": "^3.1.0",
+    "less": "^3.9.0",
+    "style-loader": "^0.23.1"
+  }
+}
