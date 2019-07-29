@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --display-modules"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,10 @@
   "homepage": "https://github.com/Tianyu5177/0418_webpack#readme",
   "devDependencies": {
     "css-loader": "^3.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^4.1.0",
+    "jshint": "^2.10.2",
+    "jshint-loader": "^0.8.4",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "style-loader": "^0.23.1",
