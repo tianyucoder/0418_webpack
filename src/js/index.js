@@ -6,7 +6,7 @@
 import {add,sub} from './module1';
 import {mul} from './module2';
 import module3 from './module3';
-//import data  from '../json/data.json';
+import data  from '../json/data.json';
 import '../less/demo.less';
 
 
