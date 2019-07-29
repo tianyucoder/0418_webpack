@@ -76,8 +76,8 @@
            
 ###6.使用loader解析less文件（使用less-loader）
 	
-	1. 安装：npm install less-loader less  --save-D
-	2. 安装：npm install css-loader style-loader --save-D
+	1. 安装：npm install less-loader less  --save -D
+	2. 安装：npm install css-loader style-loader --save -D
 	3. 向rules中写入配置：
 		{
             test: /\.less$/,
@@ -111,7 +111,7 @@
 
 ###8.url-loader处理图片资源&base64
 
-	1. 安装：npm install url-loader --save-D
+	1. 安装：npm install url-loader --save -D
 	2. 修改loader为：
 		 {
 	        test: /\.(png|jpg|gif)$/,
@@ -131,7 +131,7 @@
 	
 ###9.使用插件提取css,合并为单独的文件
 
-	1. 安装ExtractTextWebpackPlugin插件：npm install extract-text-webpack-plugin --save-D
+	1. 安装ExtractTextWebpackPlugin插件：npm install extract-text-webpack-plugin --save -D
 	2. 引入插件：const ExtractTextPlugin = require("extract-text-webpack-plugin");
 	3. 新增plugins插件配置项，并实例化ExtractTextPlugin插件：
 		plugins: [
