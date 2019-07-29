@@ -39,7 +39,37 @@ module.exports = {
         }, {
           loader: 'less-loader' //编译less为css
         }]
+      },
+      //使用file-loader处理图片(不优秀)
+      /*{
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',//如果不做图片转base64，可以用file-loader
+            options: {
+              outputPath:'img', //图片最终输出的位置
+              publicPath:'../build/img',//css资源图片路径
+              name:'[hash:5].[ext]'//修改图片名称
+            },
+          },
+        ],
+      },*/
+      //使用url-loader处理图片(可以转base64)
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',       //如果不做图片转base64，可以用file-loader
+            options: {
+              limit: 8192,//当图片小于8KB的时候，转base64
+              outputPath:'img', //图片最终输出的位置
+              publicPath:'../build/img',//css资源图片路径
+              name:'[hash:5].[ext]' //修改图片名称
+            }
+          }
+        ]
       }
+
     ]
   }
 }
