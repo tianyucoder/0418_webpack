@@ -205,7 +205,7 @@
        备注：要在html模板中写入<title><%= htmlWebpackPlugin.options.title %></title>，title配置才生效
 	5. 删除掉模板html中的所有引入
 	6. 为了清空工作目录，安装插件：clean-webpack-plugin，命令：npm i clean-webpack-plugin -D
-	7. 引入插件： const CleanWebpackPlugin = require('clean-webpack-plugin')
+	7. 引入插件： const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 	8. 实例一个插件：
 		new CleanWebpackPlugin('./build')
 	备注：最新版的CleanWebpackPlugin不传任何参数

@@ -17,6 +17,10 @@
 const path = require('path'); //path内置的模块，用来设置路径。
 //使用extract-text-webpack-plugin提取css为单独文件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+//使用html-webpack-plugin生成html
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+//引入clean-webpack-plugin，用于清空文件夹
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
   //入口（从哪里进入开始解析）
@@ -101,13 +105,36 @@ module.exports = {
           }
         ]
       },
-
+      //使用json-loader解析json(为了不让语法检查报错)
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+      //使用babel-loader转换语法
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }
+      }
     ]
   },
 
   //所有插件在如下数组中声明且实例化
   plugins:[
     new ExtractTextPlugin("./css/index.css"),
+    new HtmlWebpackPlugin(
+      {
+        title:"webpack",//生成html文件title标签
+        filename:"index.html",//生成html文件的名字
+        template:"./src/index.html"//模板的位置
+      }
+    ),
+    new CleanWebpackPlugin()
   ]
 }
 
