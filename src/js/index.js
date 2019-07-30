@@ -17,6 +17,7 @@ console.log(module3.name,module3.age);
 module3.setName('wade');
 console.log(module3.name,module3.age);
 console.log(data,typeof data);
+console.log(a)
 
 setTimeout(() =>{
   console.log('@');
