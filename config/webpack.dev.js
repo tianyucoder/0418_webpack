@@ -4,12 +4,6 @@
 
 //引入path模块，用于解决路径问题
 const path = require('path');
-//使用extract-text-webpack-plugin提取css为单独文件
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-//使用html-webpack-plugin生成html
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-//引入clean-webpack-plugin，用于清空文件夹
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 //引入webpack
 const webpack = require('webpack');
 //引入公共配置文件

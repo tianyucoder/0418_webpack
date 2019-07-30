@@ -20,7 +20,6 @@ module.exports = {
   //所有的loader都要在如下的对象中注册
   module: {
     rules: [
-
       //使用file-loader处理图片(不做图片转base64可以采用)
       /*{
         test: /\.(png|jpg|gif)$/,
@@ -92,7 +91,6 @@ module.exports = {
           }
         }
       },
-
     ]
   },
 

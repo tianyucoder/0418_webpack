@@ -23,8 +23,20 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const common = require('./webpack.common.js')
 //引入组合配置文件库
 const merge = require('webpack-merge')
+//引入webpack
+const webpack = require('webpack')
+//引入less-plugin-clean-css，压缩css
+const CleanCSSPlugin = require("less-plugin-clean-css");
+//引入html-webpack-plugin
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(common,{
+
+    //输出（最终加工完的代码输出到哪里）
+    output: {// 输出配置
+      path: path.resolve(__dirname, '../dist'),//输出文件路径配置
+      filename: './js/[name].[hash:5].js',// 输出文件名
+    },
 
     //所有的loader都要在如下的对象中注册
     module: {
@@ -34,18 +46,34 @@ module.exports = merge(common,{
           test: /\.less$/, //匹配文件的规则，说明该loader对哪个文件生效
           use: ExtractTextPlugin.extract({
             fallback: "style-loader",
-            use: ["css-loader","less-loader"]
+            use: ["css-loader","postcss-loader",{
+              loader: "less-loader", options: {
+              plugins: [
+                new CleanCSSPlugin({ advanced: true })
+              ]
+            }}]
           })
-        },
+        }
       ]
     },
 
     //所有插件在如下数组中声明且实例化
     plugins:[
       //提取css为单独文件
-      new ExtractTextPlugin("./css/index.css"),
+      new ExtractTextPlugin("./css/[name].[hash:5].css"),
       //清空输出文件夹
-      new CleanWebpackPlugin()
-    ]
+      new CleanWebpackPlugin(),
+      //压缩js
+      new webpack.optimize.UglifyJsPlugin({sourceMap:true}),
+      //压缩+生成html
+      new HtmlWebpackPlugin({
+        title:"webpack",//生成html文件title标签
+        filename:"index.html",//生成html文件的名字
+        template:"./src/index.html",//模板的位置
+        minify:{ removeComments:true, collapseWhitespace:true}
+      }),
+    ],
+    //生成映射文件
+    devtool:'source-map'
   })
 
