@@ -1,26 +1,11 @@
-/**
- * webpack的核心配置文件：执行webpack命令时，会在当前目录查找webpack.config.js文件读取配置
- * 1.通过Commonjs暴露出去一个对象
- * 2.四个关键的概念：
- *    entry：入口文件，将所有打包资源全部引入
- *    output：输出，将资源输出到指定目录下
- *    loader：处理webpack不能够解析的模块
- *    plugins：执行loader做不了的任务
- * 3.如何找到自己想要的loader？
- *   优先去官网找自己想要的loader，没有再去npm官网上找。
- * 4.在终端输入：webpack ./src/js/app.js ./build/js/built.js
- *  问题：这种方式只能够编译打包js、json文件，其他文件处理不了
- * 5.webpack --display-modules可以查看隐藏的任务
- */
+/*
+* 公共配置文件
+* */
 
 //引入path模块，用于解决路径问题
 const path = require('path');
-//使用extract-text-webpack-plugin提取css为单独文件
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 //使用html-webpack-plugin生成html
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//引入clean-webpack-plugin，用于清空文件夹
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
   //入口（从哪里进入开始解析）
@@ -28,33 +13,13 @@ module.exports = {
 
   //输出（最终加工完的代码输出到哪里）
   output: {// 输出配置
-    path: path.resolve(__dirname, 'build'),//输出文件路径配置
+    path: path.resolve(__dirname, '../build'),//输出文件路径配置
     filename: './js/index.js',// 输出文件名
   },
 
   //所有的loader都要在如下的对象中注册
   module: {
     rules: [
-      //使用less-loader解析less为css
-      /*{
-        test: /\.less$/,
-        use: [{
-          loader: 'style-loader' // 将css模块加工成一个style节点（样式已经放入该节点）
-        }, {
-          loader: 'css-loader' // 翻译css为CommonJs的模块
-        }, {
-          loader: 'less-loader' //编译less为css
-        }]
-      },*/
-
-      //提取css为单独文件
-      {
-        test: /\.less$/, //匹配文件的规则，说明该loader对哪个文件生效
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: ["css-loader","less-loader"]
-        })
-      },
 
       //使用file-loader处理图片(不做图片转base64可以采用)
       /*{
@@ -126,22 +91,19 @@ module.exports = {
             presets: ['es2015']
           }
         }
-      }
+      },
+
     ]
   },
 
   //所有插件在如下数组中声明且实例化
   plugins:[
-    //提取css为单独文件
-    new ExtractTextPlugin("./css/index.css"),
     //提取html文件
     new HtmlWebpackPlugin({
         title:"webpack",//生成html文件title标签
         filename:"index.html",//生成html文件的名字
         template:"./src/index.html"//模板的位置
       }),
-    //清空输出文件夹
-    new CleanWebpackPlugin()
   ]
 }
 
