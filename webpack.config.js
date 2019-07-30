@@ -14,7 +14,7 @@
  */
 
 //引入path模块，用于解决路径问题
-const path = require('path'); //path内置的模块，用来设置路径。
+const path = require('path');
 //使用extract-text-webpack-plugin提取css为单独文件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 //使用html-webpack-plugin生成html
