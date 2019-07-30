@@ -46,6 +46,7 @@ module.exports = {
           loader: 'less-loader' //编译less为css
         }]
       },*/
+
       //提取css为单独文件
       {
         test: /\.less$/, //匹配文件的规则，说明该loader对哪个文件生效
@@ -54,7 +55,8 @@ module.exports = {
           use: ["css-loader","less-loader"]
         })
       },
-      //使用file-loader处理图片(不优秀)
+
+      //使用file-loader处理图片(不做图片转base64可以采用)
       /*{
         test: /\.(png|jpg|gif)$/,
         use: [
@@ -68,6 +70,7 @@ module.exports = {
           },
         ],
       },*/
+
       //使用url-loader处理图片(可以转base64)
       {
         test: /\.(png|jpg|gif)$/,
@@ -83,6 +86,7 @@ module.exports = {
           }
         ]
       },
+
       //使用jshint-loader进行语法检查
       {
         test: /.js/,
@@ -105,11 +109,13 @@ module.exports = {
           }
         ]
       },
+
       //使用json-loader解析json(为了不让语法检查报错)
       {
         test: /\.json$/,
         loader: 'json-loader'
       },
+
       //使用babel-loader转换语法
       {
         test: /\.js$/,
@@ -126,14 +132,15 @@ module.exports = {
 
   //所有插件在如下数组中声明且实例化
   plugins:[
+    //提取css为单独文件
     new ExtractTextPlugin("./css/index.css"),
-    new HtmlWebpackPlugin(
-      {
+    //提取html文件
+    new HtmlWebpackPlugin({
         title:"webpack",//生成html文件title标签
         filename:"index.html",//生成html文件的名字
         template:"./src/index.html"//模板的位置
-      }
-    ),
+      }),
+    //清空输出文件夹
     new CleanWebpackPlugin()
   ]
 }
